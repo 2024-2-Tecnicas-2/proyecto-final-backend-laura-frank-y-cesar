@@ -1,5 +1,5 @@
 package com.mycompany.ajedrez;
-
+import java.util.ArrayList;
 /**
  *
  * @author frank

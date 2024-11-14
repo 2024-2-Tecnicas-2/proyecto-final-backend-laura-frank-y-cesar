@@ -1,5 +1,5 @@
 
-package com.mycompany.ajedrez;
+package com.mycompany.ajedrez.interfaz;
 
 
 public class Chessboard extends javax.swing.JFrame {
