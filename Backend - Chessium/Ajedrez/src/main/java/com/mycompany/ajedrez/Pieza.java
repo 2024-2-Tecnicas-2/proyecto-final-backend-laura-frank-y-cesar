@@ -1,9 +1,5 @@
 package com.mycompany.ajedrez;
 
-/**
- *
- * @author frank
- */
 public  abstract class Pieza {
     private int x;
     private int y;

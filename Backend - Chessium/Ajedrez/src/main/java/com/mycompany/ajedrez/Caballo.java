@@ -1,9 +1,6 @@
 package com.mycompany.ajedrez;
 import java.util.ArrayList;
-/**
- *
- * @author frank
- */
+
 public class Caballo extends Pieza {
 
     public Caballo(int x, int y, Jugador propietario) {

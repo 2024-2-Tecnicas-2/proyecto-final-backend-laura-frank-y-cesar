@@ -1,9 +1,5 @@
 package com.mycompany.ajedrez;
 
-/**
- *
- * @author frank
- */
 public class Partida {
     private final Tablero tablero;
     private final Jugador jugBlancas;

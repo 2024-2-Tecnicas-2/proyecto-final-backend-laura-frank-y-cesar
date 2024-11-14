@@ -1,9 +1,5 @@
 package com.mycompany.ajedrez;
 
-/**
- *
- * @author frank
- */
 public class Jugador {
     
     private final boolean esBlancas;

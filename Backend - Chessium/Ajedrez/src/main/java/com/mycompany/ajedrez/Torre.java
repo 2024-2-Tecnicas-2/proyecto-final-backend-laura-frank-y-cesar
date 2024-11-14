@@ -1,10 +1,7 @@
 package com.mycompany.ajedrez;
 
-/**
- *
- * @author frank
- */
-public class Torre extends Pieza {
+
+public class Torre extends Pieza{
 
     public Torre(int x, int y, Jugador propietario) {
         super(x, y, propietario);
@@ -30,9 +27,9 @@ public class Torre extends Pieza {
             con++;
         }
 
-        for (int i = y + 1; i < 8; i++) {
+        for (int i = 1; i < 8; i++) {
             movimientos[con][0] = x;
-            movimientos[con][1] = i;
+            movimientos[con][1] = y + i;
             con++;
         }
 

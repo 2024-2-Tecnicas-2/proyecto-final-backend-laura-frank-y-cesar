@@ -2,10 +2,6 @@ package com.mycompany.ajedrez;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author frank
- */
 public class Alfil extends Pieza{
 
     public Alfil(int x, int y, Jugador propietario) {

@@ -1,9 +1,5 @@
 package com.mycompany.ajedrez;
 
-/**
- *
- * @author frank
- */
 public class Casilla {
     private Pieza pieza;
 

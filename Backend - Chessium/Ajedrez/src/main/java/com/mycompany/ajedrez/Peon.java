@@ -1,13 +1,8 @@
-
 package com.mycompany.ajedrez;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author frank
- */
 public class Peon extends Pieza{
 
     private boolean movioDoble;
