@@ -1,5 +1,8 @@
 package com.mycompany.ajedrez;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Torre extends Pieza{
 
@@ -12,34 +15,25 @@ public class Torre extends Pieza{
         int[] posicionActual = getPosicion();
         int x = posicionActual[0];
         int y = posicionActual[1];
-        int[][] movimientos = new int[28][2];
-        int con = 0;
+        List<int[]> movimientos = new ArrayList<>();
 
         for (int i = x + 1; i < 8; i++) {
-            movimientos[con][0] = i;
-            movimientos[con][1] = y;
-            con++;
+            movimientos.add(new int[]{i, y});
         }
 
         for (int i = x - 1; i >= 0; i--) {
-            movimientos[con][0] = i;
-            movimientos[con][1] = y;
-            con++;
+            movimientos.add(new int[]{i, y});
         }
 
         for (int i = 1; i < 8; i++) {
-            movimientos[con][0] = x;
-            movimientos[con][1] = y + i;
-            con++;
+            movimientos.add(new int[]{x, i});
         }
 
         for (int i = y - 1; i >= 0; i--) {
-            movimientos[con][0] = x;
-            movimientos[con][1] = i;
-            con++;
+            movimientos.add(new int[]{x, i});
         }
-
-        return movimientos;
+        
+        return movimientos.toArray(new int[0][0]);
     }
 
 }
