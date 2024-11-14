@@ -1,5 +1,7 @@
 package com.mycompany.ajedrez;
 
+import java.util.ArrayList;
+
 public class Partida {
     private final Tablero tablero;
     private final Jugador jugBlancas;
@@ -68,9 +70,14 @@ public class Partida {
          jugActual = jugBlancas;
     }
     
-    public void pedirJugada(int xPieza, int yPieza, int xDestino, int yDestino){
-        if(tablero.obtenerCasilla(xPieza, yPieza).tienePieza()){
-            tablero.obtenerCasilla(xPieza, yPieza);
-        }
+    public int[][] validarJugadas(Casilla casilla){
+        if(!casilla.tienePieza())
+            return new int[0][0];
+        else{
+            Pieza pieza = casilla.getPieza();
+            int[][] movsInicial = pieza.getMovimientos();
+
+        }   
+        return new int[0][0];
     }
 }
