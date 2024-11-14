@@ -7,7 +7,7 @@ import java.util.List;
 public class Torre extends Pieza{
 
     public Torre(int x, int y, Jugador propietario) {
-        super(x, y, propietario);
+        super(x, y, propietario, TipoPieza.torre);
     }
 
     @Override
@@ -32,7 +32,6 @@ public class Torre extends Pieza{
         for (int i = y - 1; i >= 0; i--) {
             movimientos.add(new int[]{x, i});
         }
-        
         return movimientos.toArray(new int[0][0]);
     }
 

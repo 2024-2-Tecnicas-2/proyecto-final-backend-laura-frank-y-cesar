@@ -9,7 +9,7 @@ public class Peon extends Pieza{
     private boolean primerMovimiento;
     
     public Peon(int x, int y, Jugador propietario) {
-        super(x, y, propietario);
+        super(x, y, propietario, TipoPieza.peon);
         this.movioDoble = false;
         this.primerMovimiento = true;
     }
