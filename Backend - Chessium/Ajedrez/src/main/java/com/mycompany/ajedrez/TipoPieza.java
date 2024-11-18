@@ -9,5 +9,5 @@ package com.mycompany.ajedrez;
  * @author USUARIO
  */
 public enum TipoPieza {
-    
+    peon,rey,reina,torre,caballo,alfil;
 }
