@@ -22,24 +22,5 @@ public class Peon extends Pieza{
         this.movioDoble = movioDoble;
     }
     
-    @Override
-    int[][] getMovimientos() {
-        int[] posicionActual = getPosicion();
-        int x = posicionActual[0];
-        int y = posicionActual[1];
-        int direccion = 1;
-        List<int[]> movimientos = new ArrayList<>();
-        if (!super.getPropietario().esBlancas()){
-            direccion = -1;
-        } 
-        movimientos.add(new int[]{x, y + direccion});
-        if(primerMovimiento)
-            movimientos.add(new int[]{x, y + (2*direccion)});
-        if(x != 0)
-            movimientos.add(new int[]{x - 1, y + direccion});
-        if(x != 7)
-            movimientos.add(new int[]{x + 1, y + direccion});
-        
-        return movimientos.toArray(new int[0][0]);
-    }
+    
 }
