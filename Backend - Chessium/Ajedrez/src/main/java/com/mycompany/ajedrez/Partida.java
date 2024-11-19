@@ -74,21 +74,47 @@ public class Partida {
         }
     }
 
-    public void asignarMovimientoTipoPieza(int x, int y) {
+    public ArrayList<int[]> asignarMovimientoTipoPieza(int x, int y) {
         if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.peon)) {
-
+            return null;
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.caballo)) {
-
+            return null;
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.alfil)) {
-            validarMovimientosAlfil(tablero.casillas[x][y].getPieza());
+            return validarMovimientosAlfil(tablero.casillas[x][y].getPieza());
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.torre)) {
-            validarMovimientosTorre(tablero.casillas[x][y].getPieza());
+            return validarMovimientosTorre(tablero.casillas[x][y].getPieza());
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.reina)) {
-            validarMovimientosReina(tablero.casillas[x][y].getPieza());
-        } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.rey)) {
+            return validarMovimientosReina(tablero.casillas[x][y].getPieza());
+        } else {
+            return null;
+        }
+    }
 
+    public boolean esMovimientoValido(int xOrigen, int yOrigen, int xDestino, int yDestino) {
+        Pieza pieza = tablero.obtenerCasilla(xOrigen, yOrigen).getPieza();
+        if (pieza == null || !pieza.getPropietario().equals(jugActual)) {
+            return false;
         }
 
+        ArrayList<int[]> movimientosPosibles = asignarMovimientoTipoPieza(xOrigen, yOrigen);
+        for (int[] movimiento : movimientosPosibles) {
+            if (movimiento[0] == xDestino && movimiento[1] == yDestino) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void realizarMovimiento(int xOrigen, int yOrigen, int xDestino, int yDestino) {
+        if (esMovimientoValido(xOrigen, yOrigen, xDestino, yDestino)) {
+            Pieza pieza = tablero.obtenerCasilla(xOrigen, yOrigen).getPieza();
+            tablero.obtenerCasilla(xDestino, yDestino).colocarPieza(pieza);
+            pieza.setPosicion(xDestino, yDestino);
+            tablero.obtenerCasilla(xOrigen, yOrigen).colocarPieza(null);
+            cambiarTurno();
+        } else {
+            System.out.println("Movimiento no válido");
+        }
     }
 
     public ArrayList validarMovimientosTorre(Pieza pieza) {
