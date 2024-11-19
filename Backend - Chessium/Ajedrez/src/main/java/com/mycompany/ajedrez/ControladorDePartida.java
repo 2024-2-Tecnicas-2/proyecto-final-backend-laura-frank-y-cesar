@@ -14,4 +14,6 @@ public class ControladorDePartida {
         this.jugActual = jugBlancas;
         this.juegoTerminado = false;
     }
+    
+    
 }
