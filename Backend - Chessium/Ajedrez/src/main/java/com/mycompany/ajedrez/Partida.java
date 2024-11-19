@@ -80,11 +80,11 @@ public class Partida {
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.caballo)) {
 
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.alfil)) {
-
+            validarMovimientosAlfil(tablero.casillas[x][y].getPieza());
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.torre)) {
             validarMovimientosTorre(tablero.casillas[x][y].getPieza());
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.reina)) {
-
+            validarMovimientosReina(tablero.casillas[x][y].getPieza());
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.rey)) {
 
         }
