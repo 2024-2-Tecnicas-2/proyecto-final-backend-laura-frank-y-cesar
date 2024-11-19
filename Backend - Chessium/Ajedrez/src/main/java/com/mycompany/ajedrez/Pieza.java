@@ -30,5 +30,4 @@ public  abstract class Pieza {
         return propietario;
     }
     
-    abstract int[][] getMovimientos();
 }
