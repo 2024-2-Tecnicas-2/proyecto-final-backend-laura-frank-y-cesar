@@ -6,7 +6,6 @@ public class Rey extends Pieza{
         super(x, y, propietario, TipoPieza.rey);
     }
 
-    @Override
     int[][] getMovimientos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
