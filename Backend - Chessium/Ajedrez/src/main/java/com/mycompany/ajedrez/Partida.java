@@ -315,6 +315,14 @@ public class Partida {
 
         return movimientos;
     }
+
+    public Jugador getJugBlancas() {
+        return jugBlancas;
+    }
+
+    public Jugador getJugNegras() {
+        return jugNegras;
+    }
    
 
     public ArrayList<int[]> validarMovimientosRey(Pieza pieza) {
@@ -348,5 +356,68 @@ public class Partida {
         return movimientos;
     }
 
-   
+    public ArrayList<int[]> validarMovimientosPeon(Pieza pieza) {
+        int[] posicionActual = pieza.getPosicion();
+        int x = posicionActual[0];
+        int y = posicionActual[1];
+        ArrayList<int[]> movimientos = new ArrayList<>();
+
+        boolean esBlanco = pieza.getPropietario().equals("blanco");
+        int direccion = esBlanco ? -1 : 1;  // El peón blanco se mueve hacia arriba (menos en Y), el negro hacia abajo (más en Y)
+
+        // Movimiento normal de un casillero
+        int nuevaX = x + direccion;
+        if (nuevaX >= 0 && nuevaX < 8) {
+            // Verificar si la casilla está vacía para mover
+            if (!tablero.casillas[nuevaX][y].tienePieza()) {
+                movimientos.add(new int[]{nuevaX, y});
+            }
+
+            // Movimiento doble (si el peón está en su casilla inicial)
+            if ((esBlanco && x == 6) || (!esBlanco && x == 1)) {
+                nuevaX = x + 2 * direccion;
+                if (!tablero.casillas[nuevaX][y].tienePieza()) {
+                    movimientos.add(new int[]{nuevaX, y});
+                }
+            }
+        }
+
+        // Captura en diagonal
+        for (int i = -1; i <= 1; i += 2) {  // i = -1 o 1 para mover en diagonal
+            int nuevaY = y + i;
+            if (nuevaY >= 0 && nuevaY < 8) {
+                if (nuevaX >= 0 && nuevaX < 8 && tablero.casillas[nuevaX][nuevaY].tienePieza()) {
+                    Pieza piezaAdyacente = tablero.casillas[nuevaX][nuevaY].getPieza();
+                    if (!piezaAdyacente.getPropietario().equals(pieza.getPropietario())) {
+                        movimientos.add(new int[]{nuevaX, nuevaY});
+                    }
+                }
+            }
+        }
+
+        // Captura al paso (en passant)
+        if (x == 4 && (esBlanco || !esBlanco)) {
+            // Verificar captura al paso, solo ocurre en ciertas condiciones
+            if (y > 0 && tablero.casillas[x][y - 1].tienePieza()) {
+                Pieza piezaIzquierda = tablero.casillas[x][y - 1].getPieza();
+                if (piezaIzquierda.getPropietario().equals(esBlanco ? "negro" : "blanco")
+                        && piezaIzquierda.getPosicion()[0] == x && piezaIzquierda.getPosicion()[1] == y - 1) {
+                    movimientos.add(new int[]{x + direccion, y - 1});
+                }
+            }
+            if (y < 7 && tablero.casillas[x][y + 1].tienePieza()) {
+                Pieza piezaDerecha = tablero.casillas[x][y + 1].getPieza();
+                if (piezaDerecha.getPropietario().equals(esBlanco ? "negro" : "blanco")
+                        && piezaDerecha.getPosicion()[0] == x && piezaDerecha.getPosicion()[1] == y + 1) {
+                    movimientos.add(new int[]{x + direccion, y + 1});
+                }
+            }
+        }
+
+        return movimientos;
+    }
+
 }
+
+    
+
