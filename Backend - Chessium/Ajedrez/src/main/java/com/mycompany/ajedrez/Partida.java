@@ -75,7 +75,10 @@ public class Partida {
     }
 
     public ArrayList<int[]> asignarMovimientoTipoPieza(int x, int y) {
-        if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.peon)) {
+        Pieza pieza = tablero.casillas[x][y].getPieza();
+        if (pieza == null) {
+            return null;
+        } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.peon)) {
             return null;
         } else if (tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.caballo)) {
             return null;
