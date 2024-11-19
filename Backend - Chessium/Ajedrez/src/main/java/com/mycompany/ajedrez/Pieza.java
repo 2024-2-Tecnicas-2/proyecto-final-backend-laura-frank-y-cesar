@@ -13,6 +13,10 @@ public  abstract class Pieza {
         this.tipo = tipo;
     }
 
+    public TipoPieza getTipo() {
+        return tipo;
+    }
+
     public void setPosicion(int x, int y) {
         this.x = x;
         this.y = y;
