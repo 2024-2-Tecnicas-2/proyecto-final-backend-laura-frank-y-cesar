@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Torre extends Pieza{
 
+    
     public Torre(int x, int y, Jugador propietario) {
         super(x, y, propietario, TipoPieza.torre);
     }
@@ -17,10 +18,9 @@ public class Torre extends Pieza{
         int y = posicionActual[1];
         List<int[]> movimientos = new ArrayList<>();
 
-        for (int i = x + 1; i < 8; i++) {
+        for (int i = x + 1; i < 8 ; i++) {
             movimientos.add(new int[]{i, y});
         }
-
         for (int i = x - 1; i >= 0; i--) {
             movimientos.add(new int[]{i, y});
         }
@@ -34,5 +34,4 @@ public class Torre extends Pieza{
         }
         return movimientos.toArray(new int[0][0]);
     }
-
 }
