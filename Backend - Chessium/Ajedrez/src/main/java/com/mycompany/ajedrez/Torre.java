@@ -1,7 +1,6 @@
 package com.mycompany.ajedrez;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Torre extends Pieza{
