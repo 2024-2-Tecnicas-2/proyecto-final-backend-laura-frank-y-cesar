@@ -9,6 +9,7 @@ public class Partida {
     private final Jugador jugNegras;
     private Jugador jugActual;
     private boolean juegoTerminado;
+    private boolean cambioPosicion;
 
     public Jugador getJugActual() {
         return jugActual;
@@ -31,6 +32,7 @@ public class Partida {
         this.jugBlancas = new Jugador(true);
         this.jugNegras = new Jugador(false);
         this.juegoTerminado = false;   
+        this.cambioPosicion = false;
         iniciarPartida();
     }
 
@@ -98,7 +100,7 @@ public class Partida {
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.peon)) {
             return ((Peon)pieza).validarMovimientosPeon(Tablero.casillas[x][y].getPieza());
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.caballo)) {
-            return null;
+            return ((Caballo)pieza).validarMovimientosCaballo(Tablero.casillas[x][y].getPieza());
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.alfil)) {
             return ((Alfil)pieza).validarMovimientosAlfil(Tablero.casillas[x][y].getPieza());
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.torre)) {
@@ -115,7 +117,7 @@ public class Partida {
         if (pieza == null || !pieza.getPropietario().equals(jugActual)) {
             return false;
         }
-
+        
         ArrayList<int[]> movimientosPosibles = asignarMovimientoTipoPieza(xOrigen, yOrigen);
         for (int[] movimiento : movimientosPosibles) {
             if (movimiento[0] == xDestino && movimiento[1] == yDestino) {
@@ -132,9 +134,18 @@ public class Partida {
             pieza.setPosicion(xDestino, yDestino);
             Tablero.obtenerCasilla(xOrigen, yOrigen).colocarPieza(null);
             cambiarTurno();
+            cambioPosicion = true;
         } else {
             System.out.println("Movimiento no válido");
         }
+    }
+
+    public void setCambioPosicion(boolean cambioPosicion) {
+        this.cambioPosicion = cambioPosicion;
+    }
+
+    public boolean CambioPosicion() {
+        return cambioPosicion;
     }
 
     public Jugador getJugBlancas() {

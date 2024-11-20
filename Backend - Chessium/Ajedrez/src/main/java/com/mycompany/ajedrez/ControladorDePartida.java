@@ -13,11 +13,13 @@ public class ControladorDePartida {
         mostrarEstadoJuego();
         while (!partida.isJuegoTerminado()) {
             pedirJugada();
-            partida.cambiarTurno();
+            if(partida.CambioPosicion()){
+                partida.cambiarTurno();
+                partida.setCambioPosicion(false);
+            }
             mostrarEstadoJuego();
         }
 
-        // Cuando el juego termina
         System.out.println("El juego ha terminado.");
     }  
     
@@ -55,7 +57,7 @@ public class ControladorDePartida {
     }
     
     private void mostrarTablero() {     
-         for (int i = 7; i >= 0; i--) {  
+        for (int i = 7; i >= 0; i--) {  
         for (int j = 0; j < 8; j++) {
             Pieza pieza = Tablero.obtenerCasilla(j, i).getPieza();
             
@@ -66,19 +68,19 @@ public class ControladorDePartida {
             }
         }
         System.out.println();
-    }
+        }
     }
     
     private void pedirJugada() {
         int xOrigen, yOrigen, xDestino, yDestino;
         System.out.println("Ingrese la jugada (origen y destino):");
         System.out.print("Origen (x, y): ");
-        xOrigen = scanner.nextInt() - 1;
-        yOrigen = scanner.nextInt() - 1;
+        xOrigen = scanner.nextInt();
+        yOrigen = scanner.nextInt();
 
         System.out.print("Destino (x, y): ");
-        xDestino = scanner.nextInt() - 1;
-        yDestino = scanner.nextInt() - 1;
+        xDestino = scanner.nextInt();
+        yDestino = scanner.nextInt();
 
         partida.realizarMovimiento(xOrigen, yOrigen, xDestino, yDestino);
     }
