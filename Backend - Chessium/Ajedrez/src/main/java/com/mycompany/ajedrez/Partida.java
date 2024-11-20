@@ -8,11 +8,29 @@ public class Partida {
     private final Jugador jugBlancas;
     private final Jugador jugNegras;
     private Jugador jugActual;
+    private boolean juegoTerminado;
 
+    public Jugador getJugActual() {
+        return jugActual;
+    }
+
+    public void setJugActual(Jugador jugActual) {
+        this.jugActual = jugActual;
+    }
+
+    public boolean isJuegoTerminado() {
+        return juegoTerminado;
+    }
+
+    public void setJuegoTerminado(boolean juegoTerminado) {
+        this.juegoTerminado = juegoTerminado;
+    }
+    
     public Partida() {
         Tablero.inicializar();
         this.jugBlancas = new Jugador(true);
         this.jugNegras = new Jugador(false);
+        this.juegoTerminado = false;   
         iniciarPartida();
     }
 

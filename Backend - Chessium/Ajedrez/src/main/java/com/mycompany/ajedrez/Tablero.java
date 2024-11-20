@@ -16,5 +16,9 @@ public class Tablero {
     public static Casilla obtenerCasilla(int x, int y){
         return casillas[x][y];
     }
+    
+    public static void ColocarPieza(){
+        
+    }
             
 }
