@@ -78,15 +78,15 @@ public class Partida {
         if (pieza == null) {
             return null;
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.peon)) {
-            return null;
+            return ((Peon)pieza).validarMovimientosPeon(Tablero.casillas[x][y].getPieza());
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.caballo)) {
             return null;
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.alfil)) {
-            return validarMovimientosAlfil(Tablero.casillas[x][y].getPieza());
+            return ((Alfil)pieza).validarMovimientosAlfil(Tablero.casillas[x][y].getPieza());
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.torre)) {
             return ((Torre)pieza).validarMovimientosTorre(Tablero.casillas[x][y].getPieza());
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.reina)) {
-            return validarMovimientosReina(Tablero.casillas[x][y].getPieza());
+            return ((Reina)pieza).validarMovimientosReina(Tablero.casillas[x][y].getPieza());
         } else {
             return null;
         }
@@ -119,151 +119,10 @@ public class Partida {
         }
     }
 
-    public ArrayList<int[]> validarMovimientosAlfil(Pieza pieza) {
-        int[] posicionActual = pieza.getPosicion();
-        int x = posicionActual[0];
-        int y = posicionActual[1];
-        ArrayList<int[]> movimientos = new ArrayList<>();
+   
+  
 
-        for (int i = 1; i < 8; i++) {
-            if (x + i < 8 && y + i < 8) {
-                if (!Tablero.casillas[x + i][y + i].tienePieza()) {
-                    movimientos.add(new int[]{x + i, y + i});
-                } else {
-                    if (!Tablero.casillas[x + i][y + i].getPieza().getPropietario().equals(jugActual)) {
-                        movimientos.add(new int[]{x + i, y + i});
-                    }
-                    break;
-                }
-            }
-
-            if (x - i >= 0 && y + i < 8) {
-                if (!Tablero.casillas[x - i][y + i].tienePieza()) {
-                    movimientos.add(new int[]{x - i, y + i});
-                } else {
-                    if (!Tablero.casillas[x - i][y + i].getPieza().getPropietario().equals(jugActual)) {
-                        movimientos.add(new int[]{x - i, y + i});
-                    }
-                    break;
-                }
-            }
-
-            if (x + i < 8 && y - i >= 0) {
-                if (!Tablero.casillas[x + i][y - i].tienePieza()) {
-                    movimientos.add(new int[]{x + i, y - i});
-                } else {
-                    if (!Tablero.casillas[x + i][y - i].getPieza().getPropietario().equals(jugActual)) {
-                        movimientos.add(new int[]{x + i, y - i});
-                    }
-                    break;
-                }
-            }
-
-            if (x - i >= 0 && y - i >= 0) {
-                if (!Tablero.casillas[x - i][y - i].tienePieza()) {
-                    movimientos.add(new int[]{x - i, y - i});
-                } else {
-                    if (!Tablero.casillas[x - i][y - i].getPieza().getPropietario().equals(jugActual)) {
-                        movimientos.add(new int[]{x - i, y - i});
-                    }
-                    break;
-                }
-            }
-        }
-
-        return movimientos;
-    }
-
-    public ArrayList<int[]> validarMovimientosReina(Pieza pieza) {
-        int[] posicionActual = pieza.getPosicion();
-        int x = posicionActual[0];
-        int y = posicionActual[1];
-        ArrayList<int[]> movimientos = new ArrayList<>();
-
-        for (int i = x + 1; i < 8; i++) {
-            if (!Tablero.casillas[i][y].tienePieza()) {
-                movimientos.add(new int[]{i, y});
-            } else {
-                if (!Tablero.casillas[i][y].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{i, y});
-                }
-                break;
-            }
-        }
-        for (int i = x - 1; i >= 0; i--) {
-            if (!Tablero.casillas[i][y].tienePieza()) {
-                movimientos.add(new int[]{i, y});
-            } else {
-                if (!Tablero.casillas[i][y].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{i, y});
-                }
-                break;
-            }
-        }
-        for (int i = y + 1; i < 8; i++) {
-            if (!Tablero.casillas[x][i].tienePieza()) {
-                movimientos.add(new int[]{x, i});
-            } else {
-                if (!Tablero.casillas[x][i].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{x, i});
-                }
-                break;
-            }
-        }
-        for (int i = y - 1; i >= 0; i--) {
-            if (!Tablero.casillas[x][i].tienePieza()) {
-                movimientos.add(new int[]{x, i});
-            } else {
-                if (!Tablero.casillas[x][i].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{x, i});
-                }
-                break;
-            }
-        }
-
-        for (int i = 1; x + i < 8 && y + i < 8; i++) {
-            if (!Tablero.casillas[x + i][y + i].tienePieza()) {
-                movimientos.add(new int[]{x + i, y + i});
-            } else {
-                if (!Tablero.casillas[x + i][y + i].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{x + i, y + i});
-                }
-                break;
-            }
-        }
-        for (int i = 1; x - i >= 0 && y + i < 8; i++) {
-            if (!Tablero.casillas[x - i][y + i].tienePieza()) {
-                movimientos.add(new int[]{x - i, y + i});
-            } else {
-                if (!Tablero.casillas[x - i][y + i].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{x - i, y + i});
-                }
-                break;
-            }
-        }
-        for (int i = 1; x + i < 8 && y - i >= 0; i++) {
-            if (!Tablero.casillas[x + i][y - i].tienePieza()) {
-                movimientos.add(new int[]{x + i, y - i});
-            } else {
-                if (!Tablero.casillas[x + i][y - i].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{x + i, y - i});
-                }
-                break;
-            }
-        }
-        for (int i = 1; x - i >= 0 && y - i >= 0; i++) {
-            if (!Tablero.casillas[x - i][y - i].tienePieza()) {
-                movimientos.add(new int[]{x - i, y - i});
-            } else {
-                if (!Tablero.casillas[x - i][y - i].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{x - i, y - i});
-                }
-                break;
-            }
-        }
-
-        return movimientos;
-    }
+    
 
     public Jugador getJugBlancas() {
         return jugBlancas;
@@ -272,100 +131,6 @@ public class Partida {
     public Jugador getJugNegras() {
         return jugNegras;
     }
-   
-
-    public ArrayList<int[]> validarMovimientosRey(Pieza pieza) {
-        int[] posicionActual = pieza.getPosicion();
-        int x = posicionActual[0];
-        int y = posicionActual[1];
-        ArrayList<int[]> movimientos = new ArrayList<>();
-
-        
-        int[][] posiblesMovimientos = {
-            {-1, -1}, {-1, 0}, {-1, 1}, 
-            {0, -1}, {0, 1}, 
-            {1, -1}, {1, 0}, {1, 1} 
-        };
-
-       
-        for (int[] movimiento : posiblesMovimientos) {
-            int nuevaX = x + movimiento[0];
-            int nuevaY = y + movimiento[1];
-
-            
-            if (nuevaX >= 0 && nuevaX < 8 && nuevaY >= 0 && nuevaY < 8) {
-                
-                if (!Tablero.casillas[nuevaX][nuevaY].tienePieza()
-                        || !Tablero.casillas[nuevaX][nuevaY].getPieza().getPropietario().equals(pieza.getPropietario())) {
-                    movimientos.add(new int[]{nuevaX, nuevaY});
-                }
-            }
-        }
-
-        return movimientos;
-    }
-
-    public ArrayList<int[]> validarMovimientosPeon(Pieza pieza) {
-        int[] posicionActual = pieza.getPosicion();
-        int x = posicionActual[0];
-        int y = posicionActual[1];
-        ArrayList<int[]> movimientos = new ArrayList<>();
-
-        boolean esBlanco = pieza.getPropietario().equals("blanco");
-        int direccion = esBlanco ? -1 : 1;  // El peón blanco se mueve hacia arriba (menos en Y), el negro hacia abajo (más en Y)
-
-        // Movimiento normal de un casillero
-        int nuevaX = x + direccion;
-        if (nuevaX >= 0 && nuevaX < 8) {
-            // Verificar si la casilla está vacía para mover
-            if (!Tablero.casillas[nuevaX][y].tienePieza()) {
-                movimientos.add(new int[]{nuevaX, y});
-            }
-
-            // Movimiento doble (si el peón está en su casilla inicial)
-            if ((esBlanco && x == 6) || (!esBlanco && x == 1)) {
-                nuevaX = x + 2 * direccion;
-                if (!Tablero.casillas[nuevaX][y].tienePieza()) {
-                    movimientos.add(new int[]{nuevaX, y});
-                }
-            }
-        }
-
-        // Captura en diagonal
-        for (int i = -1; i <= 1; i += 2) {  // i = -1 o 1 para mover en diagonal
-            int nuevaY = y + i;
-            if (nuevaY >= 0 && nuevaY < 8) {
-                if (nuevaX >= 0 && nuevaX < 8 && Tablero.casillas[nuevaX][nuevaY].tienePieza()) {
-                    Pieza piezaAdyacente = Tablero.casillas[nuevaX][nuevaY].getPieza();
-                    if (!piezaAdyacente.getPropietario().equals(pieza.getPropietario())) {
-                        movimientos.add(new int[]{nuevaX, nuevaY});
-                    }
-                }
-            }
-        }
-
-        // Captura al paso (en passant)
-        if (x == 4 && (esBlanco || !esBlanco)) {
-            // Verificar captura al paso, solo ocurre en ciertas condiciones
-            if (y > 0 && Tablero.casillas[x][y - 1].tienePieza()) {
-                Pieza piezaIzquierda = Tablero.casillas[x][y - 1].getPieza();
-                if (piezaIzquierda.getPropietario().equals(esBlanco ? "negro" : "blanco")
-                        && piezaIzquierda.getPosicion()[0] == x && piezaIzquierda.getPosicion()[1] == y - 1) {
-                    movimientos.add(new int[]{x + direccion, y - 1});
-                }
-            }
-            if (y < 7 && Tablero.casillas[x][y + 1].tienePieza()) {
-                Pieza piezaDerecha = Tablero.casillas[x][y + 1].getPieza();
-                if (piezaDerecha.getPropietario().equals(esBlanco ? "negro" : "blanco")
-                        && piezaDerecha.getPosicion()[0] == x && piezaDerecha.getPosicion()[1] == y + 1) {
-                    movimientos.add(new int[]{x + direccion, y + 1});
-                }
-            }
-        }
-
-        return movimientos;
-    }
-
 }
 
     
