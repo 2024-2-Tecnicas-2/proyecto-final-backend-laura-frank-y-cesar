@@ -55,17 +55,18 @@ public class ControladorDePartida {
     }
     
     private void mostrarTablero() {     
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Pieza pieza = Tablero.obtenerCasilla(i, j).getPieza();
-                if (pieza != null) {
-                    System.out.print(pieza.getTipo().toString().charAt(0) + " "); 
-                } else {
-                    System.out.print(". ");
-                }
+         for (int i = 7; i >= 0; i--) {  
+        for (int j = 0; j < 8; j++) {
+            Pieza pieza = Tablero.obtenerCasilla(j, i).getPieza();
+            
+            if (pieza != null) {
+                System.out.print(pieza.getTipo().toString().charAt(0) + " ");
+            } else {
+                System.out.print(". ");
             }
-            System.out.println();
         }
+        System.out.println();
+    }
     }
     
     private void pedirJugada() {

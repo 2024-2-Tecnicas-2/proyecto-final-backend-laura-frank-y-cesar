@@ -37,7 +37,7 @@ public class Partida {
     public void iniciarPartida() {
         for (int i = 0; i < 8; i++) {
             Peon peon = new Peon(i, 1, jugBlancas);
-            Tablero.obtenerCasilla(1, i).colocarPieza(peon);
+            Tablero.obtenerCasilla(i, 1).colocarPieza(peon);
         }
         for (int i = 0; i < 8; i++) {
             Peon peon = new Peon(i, 6, jugNegras);
