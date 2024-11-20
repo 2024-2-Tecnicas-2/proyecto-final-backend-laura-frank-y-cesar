@@ -88,7 +88,7 @@ public class Partida {
         } else if (Tablero.casillas[x][y].getPieza().getTipo().equals(TipoPieza.reina)) {
             return ((Reina)pieza).validarMovimientosReina(Tablero.casillas[x][y].getPieza());
         } else {
-            return null;
+            return ((Rey)pieza).validarMovimientosRey(Tablero.casillas[x][y].getPieza());
         }
     }
 
@@ -118,11 +118,6 @@ public class Partida {
             System.out.println("Movimiento no válido");
         }
     }
-
-   
-  
-
-    
 
     public Jugador getJugBlancas() {
         return jugBlancas;
