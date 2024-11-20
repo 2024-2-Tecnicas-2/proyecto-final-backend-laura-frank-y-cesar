@@ -9,7 +9,6 @@ public class Partida {
     private final Jugador jugNegras;
     private Jugador jugActual;
     private boolean juegoTerminado;
-    private boolean cambioPosicion;
 
     public Jugador getJugActual() {
         return jugActual;
@@ -32,7 +31,6 @@ public class Partida {
         this.jugBlancas = new Jugador(true);
         this.jugNegras = new Jugador(false);
         this.juegoTerminado = false;   
-        this.cambioPosicion = false;
         iniciarPartida();
     }
 
@@ -137,14 +135,6 @@ public class Partida {
         } else {
             System.out.println("Movimiento no válido");
         }
-    }
-
-    public void setCambioPosicion(boolean cambioPosicion) {
-        this.cambioPosicion = cambioPosicion;
-    }
-
-    public boolean CambioPosicion() {
-        return cambioPosicion;
     }
 
     public Jugador getJugBlancas() {

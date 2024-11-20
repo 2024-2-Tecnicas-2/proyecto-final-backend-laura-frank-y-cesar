@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class ControladorDePartida {
     private Partida partida;
     private Scanner scanner;
+    
     public ControladorDePartida() {
         this.partida = new Partida();  
         scanner = new Scanner(System.in);
