@@ -1,6 +1,6 @@
 package com.mycompany.ajedrez;
 
-public  abstract class Pieza {
+public abstract class Pieza {
     private int x;
     private int y;
     private final Jugador propietario;

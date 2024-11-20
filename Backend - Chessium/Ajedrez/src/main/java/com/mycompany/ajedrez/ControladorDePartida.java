@@ -13,10 +13,6 @@ public class ControladorDePartida {
         mostrarEstadoJuego();
         while (!partida.isJuegoTerminado()) {
             pedirJugada();
-            if(partida.CambioPosicion()){
-                partida.cambiarTurno();
-                partida.setCambioPosicion(false);
-            }
             mostrarEstadoJuego();
         }
 

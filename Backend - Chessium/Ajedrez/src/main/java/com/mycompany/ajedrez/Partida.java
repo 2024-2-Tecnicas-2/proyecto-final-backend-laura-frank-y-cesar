@@ -134,7 +134,6 @@ public class Partida {
             pieza.setPosicion(xDestino, yDestino);
             Tablero.obtenerCasilla(xOrigen, yOrigen).colocarPieza(null);
             cambiarTurno();
-            cambioPosicion = true;
         } else {
             System.out.println("Movimiento no válido");
         }
