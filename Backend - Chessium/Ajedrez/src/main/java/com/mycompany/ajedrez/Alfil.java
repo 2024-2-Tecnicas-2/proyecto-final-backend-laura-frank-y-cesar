@@ -13,49 +13,44 @@ public class Alfil extends Pieza{
         int y = posicionActual[1];
         ArrayList<int[]> movimientos = new ArrayList<>();
 
-        for (int i = 1; i < 8; i++) {
-            if (x + i < 8 && y + i < 8) {
-                if (!Tablero.casillas[x + i][y + i].tienePieza()) {
+        for (int i = 1; x + i < 8 && y + i < 8; i++) {
+            if (!Tablero.casillas[x + i][y + i].tienePieza()) {
+                movimientos.add(new int[]{x + i, y + i});
+            } else {
+                if (!Tablero.casillas[x + i][y + i].getPieza().getPropietario().equals(pieza.getPropietario())) {
                     movimientos.add(new int[]{x + i, y + i});
-                } else {
-                    if (!Tablero.casillas[x + i][y + i].getPieza().getPropietario().equals(Tablero.jugActual)) {
-                        movimientos.add(new int[]{x + i, y + i});
-                    }
-                    break;
                 }
+                break;
             }
-
-            if (x - i >= 0 && y + i < 8) {
-                if (!Tablero.casillas[x - i][y + i].tienePieza()) {
+        }
+        for (int i = 1; x - i >= 0 && y + i < 8; i++) {
+            if (!Tablero.casillas[x - i][y + i].tienePieza()) {
+                movimientos.add(new int[]{x - i, y + i});
+            } else {
+                if (!Tablero.casillas[x - i][y + i].getPieza().getPropietario().equals(pieza.getPropietario())) {
                     movimientos.add(new int[]{x - i, y + i});
-                } else {
-                    if (!Tablero.casillas[x - i][y + i].getPieza().getPropietario().equals(Tablero.jugActual)) {
-                        movimientos.add(new int[]{x - i, y + i});
-                    }
-                    break;
                 }
+                break;
             }
-
-            if (x + i < 8 && y - i >= 0) {
-                if (!Tablero.casillas[x + i][y - i].tienePieza()) {
+        }
+        for (int i = 1; x + i < 8 && y - i >= 0; i++) {
+            if (!Tablero.casillas[x + i][y - i].tienePieza()) {
+                movimientos.add(new int[]{x + i, y - i});
+            } else {
+                if (!Tablero.casillas[x + i][y - i].getPieza().getPropietario().equals(pieza.getPropietario())) {
                     movimientos.add(new int[]{x + i, y - i});
-                } else {
-                    if (!Tablero.casillas[x + i][y - i].getPieza().getPropietario().equals(Tablero.jugActual)) {
-                        movimientos.add(new int[]{x + i, y - i});
-                    }
-                    break;
                 }
+                break;
             }
-
-            if (x - i >= 0 && y - i >= 0) {
-                if (!Tablero.casillas[x - i][y - i].tienePieza()) {
+        }
+        for (int i = 1; x - i >= 0 && y - i >= 0; i++) {
+            if (!Tablero.casillas[x - i][y - i].tienePieza()) {
+                movimientos.add(new int[]{x - i, y - i});
+            } else {
+                if (!Tablero.casillas[x - i][y - i].getPieza().getPropietario().equals(pieza.getPropietario())) {
                     movimientos.add(new int[]{x - i, y - i});
-                } else {
-                    if (!Tablero.casillas[x - i][y - i].getPieza().getPropietario().equals(Tablero.jugActual)) {
-                        movimientos.add(new int[]{x - i, y - i});
-                    }
-                    break;
                 }
+                break;
             }
         }
 
